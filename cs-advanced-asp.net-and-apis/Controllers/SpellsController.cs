@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using cs_advanced_asp.net_and_apis.Services;
+using Microsoft.AspNetCore.RateLimiting;
 
 
 namespace cs_advanced_asp.net_and_apis.Controllers;
@@ -18,6 +19,7 @@ public class SpellsController(SpellsService spellsService) : Controller
     }
 
     [HttpGet]
+    [EnableRateLimiting("fixed")]
     [Route("/spell")]
     public IActionResult GetSpell()
     {
