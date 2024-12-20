@@ -27,6 +27,10 @@ builder.Services.AddRateLimiter(options =>
 }
 );
 
+//Caching
+
+builder.Services.AddOutputCache();
+
 //Health checks
 builder.Services.AddHealthChecks()
                 .AddCheck<TeachersHealthCheck>("teacher_health_check",
@@ -35,6 +39,7 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
+app.UseOutputCache();
 app.UseRateLimiter();
 app.UseHttpsRedirection();
 app.UseAuthorization();

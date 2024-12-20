@@ -6,6 +6,10 @@ public class TeachersService(TeachersModel teachersModel)
 {
     private readonly TeachersModel teachersModel = teachersModel;
 
+    public List<Teacher> GetTeachers()
+    {
+        return teachersModel.GetAllTeachers();
+    }
     public Teacher? GetTeacherById(int id)
     {
         return teachersModel.GetTeacher(id);

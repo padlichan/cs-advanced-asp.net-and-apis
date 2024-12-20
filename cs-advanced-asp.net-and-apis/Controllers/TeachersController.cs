@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using cs_advanced_asp.net_and_apis.Services;
 using cs_advanced_asp.net_and_apis.Models;
+using Microsoft.AspNetCore.OutputCaching;
 
 
 namespace cs_advanced_asp.net_and_apis.Controllers;
@@ -14,6 +15,13 @@ public class TeachersController : Controller
     public TeachersController(TeachersService teachersService)
     {
         this.teachersService = teachersService;
+    }
+
+    [HttpGet]
+    [OutputCache(Duration = 120)]
+    public IActionResult GetTeachers()
+    {
+        return Ok(teachersService.GetTeachers());
     }
 
     [HttpGet("{id}")]
