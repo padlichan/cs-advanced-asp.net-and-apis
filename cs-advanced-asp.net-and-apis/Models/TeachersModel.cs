@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics.Eventing.Reader;
+using System.Text.Json;
 
 namespace cs_advanced_asp.net_and_apis.Models;
 
@@ -20,11 +21,20 @@ public class TeachersModel
     public Teacher AddTeacher(Teacher teacher)
     {
         var teachers = GetAllTeachers();
-        teacher.Id = teachers.LastOrDefault()?.Id ?? 1;
+        teacher.Id = teachers.LastOrDefault()?.Id+1 ?? 1;
         teachers.Add(teacher);
         WriteData(teachers);
         return teacher;
+    }
 
+    public bool DeleteTeacher(int id)
+    {
+        var teachers = GetAllTeachers();
+        var teacherToDelete = teachers.Where(t => t.Id == id).FirstOrDefault();
+        if (teacherToDelete == null) return false;
+        teachers.Remove(teacherToDelete);
+        WriteData(teachers);
+        return true;
     }
 
     private void WriteData(List<Teacher> teachers)

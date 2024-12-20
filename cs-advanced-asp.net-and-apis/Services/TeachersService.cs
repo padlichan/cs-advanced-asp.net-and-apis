@@ -15,4 +15,9 @@ public class TeachersService(TeachersModel teachersModel)
     {
         return teachersModel.AddTeacher(teacher);
     }
+
+    public bool DeleteTeacher(int id)
+    {
+        return teachersModel.DeleteTeacher(id);
+    }
 }

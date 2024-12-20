@@ -27,8 +27,14 @@ public class TeachersController : Controller
     [HttpPost]
     public IActionResult PostTeacher(Teacher teacher)
     {
-        if(!ModelState.IsValid) return BadRequest(ModelState);
         var teacherToPost = teachersService.PostTeacher(teacher);
         return Created("", teacherToPost);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteTeacherById(int id)
+    {
+        if(teachersService.DeleteTeacher(id)) return NoContent();
+        return NotFound();
     }
 }
