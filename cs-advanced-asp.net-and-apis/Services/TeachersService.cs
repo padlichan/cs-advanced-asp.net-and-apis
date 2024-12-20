@@ -10,4 +10,9 @@ public class TeachersService(TeachersModel teachersModel)
     {
         return teachersModel.GetTeacher(id);
     }
+
+    public Teacher PostTeacher(Teacher teacher)
+    {
+        return teachersModel.AddTeacher(teacher);
+    }
 }

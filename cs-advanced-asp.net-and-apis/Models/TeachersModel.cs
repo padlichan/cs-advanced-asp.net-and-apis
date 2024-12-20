@@ -16,4 +16,19 @@ public class TeachersModel
         var teachers = GetAllTeachers();
         return teachers.Where(t => t.Id == id).FirstOrDefault();
     }
+
+    public Teacher AddTeacher(Teacher teacher)
+    {
+        var teachers = GetAllTeachers();
+        teacher.Id = teachers.LastOrDefault()?.Id ?? 1;
+        teachers.Add(teacher);
+        WriteData(teachers);
+        return teacher;
+
+    }
+
+    private void WriteData(List<Teacher> teachers)
+    {
+        File.WriteAllText("Resources/Teachers.json", JsonSerializer.Serialize(teachers));
+    }
 }

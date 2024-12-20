@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace cs_advanced_asp.net_and_apis.Models
 {
@@ -6,7 +7,9 @@ namespace cs_advanced_asp.net_and_apis.Models
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
+
         [JsonPropertyName("name")]
+        [Required]
         public string Name { get; set; } = "";
         [JsonPropertyName("species")]
         public string Species { get; set; } = "";
