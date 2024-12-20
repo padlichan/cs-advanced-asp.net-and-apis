@@ -5,8 +5,12 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
 builder.Services.AddScoped<SpellsService>();
 builder.Services.AddScoped<SpellsModel>();
+builder.Services.AddScoped<TeachersService>();
+builder.Services.AddScoped<TeachersModel>();
+
 builder.Services.AddHealthChecks()
                 .AddCheck<TeachersHealthCheck>("teacher_health_check",
                 failureStatus: HealthStatus.Unhealthy,

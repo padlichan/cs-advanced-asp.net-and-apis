@@ -10,4 +10,10 @@ public class TeachersModel
         var teachers = JsonSerializer.Deserialize<List<Teacher>>(data);
         return teachers ?? [];
     }
+
+    public Teacher? GetTeacher(int id)
+    {
+        var teachers = GetAllTeachers();
+        return teachers.Where(t => t.Id == id).FirstOrDefault();
+    }
 }
