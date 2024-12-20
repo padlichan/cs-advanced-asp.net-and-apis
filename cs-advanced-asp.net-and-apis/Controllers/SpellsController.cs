@@ -16,4 +16,13 @@ public class SpellsController(SpellsService spellsService) : Controller
         var spells = spellsService.GetSpells();
         return Ok(spells);
     }
+
+    [HttpGet]
+    [Route("/spell")]
+    public IActionResult GetSpell()
+    {
+        var spell = spellsService.GetSpell();
+        if (spell == null) return NoContent();
+        return Ok(spellsService.GetSpell());
+    }
 }

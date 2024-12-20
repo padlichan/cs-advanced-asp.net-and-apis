@@ -10,4 +10,9 @@ public class SpellsService(SpellsModel spellsModel)
     {
         return spellsModel.GetAllSpells();
     }
+
+    public Spell? GetSpell()
+    {
+        return spellsModel.GetRandomSpell();
+    }
 }

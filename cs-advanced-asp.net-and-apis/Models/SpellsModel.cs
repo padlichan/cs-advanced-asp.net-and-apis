@@ -10,4 +10,12 @@ public class SpellsModel
         var spells = JsonSerializer.Deserialize<List<Spell>>(data);
         return spells ?? [];
     }
+
+    public Spell? GetRandomSpell()
+    {
+        var spells = GetAllSpells();
+        if (spells.Count == 0) return null;
+        int randomIndex = new Random().Next(spells.Count - 1);
+        return spells[randomIndex];
+    }
 }
